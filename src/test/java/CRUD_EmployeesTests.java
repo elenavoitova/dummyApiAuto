@@ -27,7 +27,7 @@ public class CRUD_EmployeesTests extends TestHooks {
         } else Assert.fail("User isn't created. Status " + response.getStatusCode());
     }
 
-    @Test(priority = 2, dataProvider = "created-employees", dataProviderClass = Provider.class)
+    @Test(priority = 2, dependsOnMethods = "createEmployeesTest", dataProvider = "created-employees", dataProviderClass = Provider.class)
     public void verifyEmployeeTest(User employee) {
         Response response = RequestHandler.getEmployeeRequest(employee);
         Assert.assertEquals(response.getStatusCode(), 200,"Wrong response status code");
